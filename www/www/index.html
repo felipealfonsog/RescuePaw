@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport"
+	content="user-scalable=no, initial-scale=1, width=device-width" />
+<!-- Do not change this! -->
+
+<!-- Stylesheets -->
+<!-- jQuery and jQuery Mobile -->
+<!--<link rel="stylesheet" type="text/css"	href="css/jquery.mobile-1.0a3.min.css" />  -->
+  <link rel="stylesheet" href="css/themes/custom.css" />
+  <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+  <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.0-rc.1.min.css" /> 
+
+
+<!-- Cordova PhoneGap -->
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="index.js"></script>
+
+<!-- jQuery and jQuery Mobile -->
+
+<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile.settings.js"></script>
+<!-- this must be loaded before jQuery Mobile -->
+<script type="text/javascript" src="js/jquery.mobile-1.4.0-rc.1.min.js"></script>
+
+<!-- Other frameworks 
+<script type="text/javascript" src="js/energize.js"></script>
+ for speeding op tap events -->
+
+<!-- Application --><!-- your scripts -->
+<script type="text/javascript" src="js/camera.js"></script><!--the camera js-->
+<script type="text/javascript" src="js/location.js"></script><!--the location js-->
+<script type="text/javascript" src="js/custom.js"></script><!--the location js-->
+
+<title>AnimalHelper</title>
+</head>
+<body>
+	<div id="indexPage" data-role="page" data-theme="a" style="text-align:center;">
+		<!-- id to tie the page event to this specific page -->
+
+
+		<div data-role="header" data-tap-toggle="false" data-position="fixed"
+			data-theme="a" class="headerSticky">
+			<div>
+				<h1>Animal Helper</h1>
+			</div>
+			<!-- populate the panel menu, also with the id Index in this case -->
+		</div>
+		<!-- /header -->
+
+		<div data-role="content" data-theme="a">
+
+			<h1>What kind is it?</h1>
+			<br>
+			<ul data-role="listview" id="MenuOne" data-theme="g">
+
+				<li><a href="#secondPage">Birds</a></li>
+				<li><a href="#secondPage">Mammals</a></li>
+				<li><a href="#secondPage">Marine</a></li>
+				<li><a href="#secondPage">Pets</a></li>
+				<li><a href="#secondPage">Reptiles</a></li>
+			</ul>
+			<script type="text/javascript">
+			var firstText
+			$("#MenuOne li").click(function(){
+			    firstText = $( this ).text();
+			    });			
+			</script>
+		</div>
+		<!-- /content -->
+
+	</div>
+	<!-- /page -->
+
+	<div id="secondPage" data-role="page" data-theme="a" style="text-align:center;">
+		<!-- id to tie the page event to this specific page -->
+
+
+		<div data-role="header" data-tap-toggle="false" data-position="fixed"
+			data-theme="a" class="headerSticky">
+			<div >
+				<h1>Animal Helper</h1>
+			</div>
+			<!-- populate the panel menu, also with the id Index in this case -->
+		</div>
+		<!-- /header -->
+
+		<div data-role="content" data-theme="a">
+
+			<h1>What's wrong</h1>
+			<br>
+			<h4>How does the animal appear??</h4>
+			
+			<br>
+			<ul data-role="listview" id="MenuTwo" data-theme="g">
+
+				<li><a href="#cameraPage">Entangled</a></li>
+				<li><a href="#cameraPage">Injured</a></li>
+				<li><a href="#cameraPage">Sick</a></li>
+				<li><a href="#cameraPage">Weak</a></li>
+				<li><a href="#cameraPage">Stranded</a></li>
+			</ul>
+			<script type="text/javascript">
+			var secondText
+			$("#MenuTwo li").click(function(){
+			    secondText = $( this ).text();
+			    });			
+			</script>
+
+		</div>
+		<!-- /content -->
+
+	</div>
+	<!-- /page -->
+
+
+	<div id="cameraPage" data-role="page" data-theme="a" style="text-align:center;">
+
+		<div data-role="header" data-tap-toggle="false" data-position="fixed"
+			data-theme="a" class="headerSticky">
+			<div>
+				<h1>
+					<center>Animal Helper
+				</h1>
+			</div>
+			<!-- populate the panel menu, also with the id Index in this case -->
+		</div>
+		<!-- /header -->
+
+		<div data-role="content" data-theme="g">
+
+			<h1>Camera</h1>
+			<p>Please take a picture so that we have more information</p>
+				<br> <br>
+				<img style="display: none; width: 350px; height: 300px;"
+					id="smallImage" src="" />
+			<br> <br>
+			<button onclick="capturePhoto()">Capture Picture</button>
+			<br>
+				<a data-role="button" href="#fourthPage">Next</a>
+		</div>
+		<!-- /content -->
+	</div>
+	<!-- /page -->
+
+	<div id="fourthPage" data-role="page" data-theme="a" style="text-align:center;">
+
+		<div data-role="header" data-tap-toggle="false" data-position="fixed"
+			data-theme="a" class="headerSticky">
+			<div>
+				<h1>Animal Helper</h1>
+			</div>
+			<!-- populate the panel menu, also with the id Index in this case -->
+		</div>
+		<!-- /header -->
+
+		<div data-role="content" data-theme="a">
+
+			<h1>Location</h1>
+			<script type="text/javascript"
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7vV2S_Xd2lr2tT7s-udyCRjGbseGlxoY&sensor=true">
+    </script>
+			<script type="text/javascript" src="js/jquery.ui.map.full.min.js"></script>
+			<!--the location js-->
+			<script type="text/javascript" src="js/sql.js"></script>
+			<!--the sql js-->
+
+			<div id="info">
+				<b>Status:</b> <span id="location_status">Stopped</span>
+				<table width="100%">
+					<tr>
+						<td><b>Latitude:</b></td>
+						<td id="Lat">&nbsp;</td>
+					</tr>
+					<tr>
+						<td><b>Longitude:</b></td>
+						<td id="Long">&nbsp;</td>
+					</tr>
+
+				</table>
+			</div>
+			<input type="button" name="btn_large" id="btn_large"
+				onclick="getLocation(navigator.geolocation);" value="Get Location" />
+
+				<a data-role="button" href="#showMapPage">Next</a>
+
+		</div>
+		<!-- /content -->
+
+	</div>
+	<!-- /page -->
+
+
+
+
+
+	<div id="showMapPage" data-role="page" data-theme="a" style="text-align:center;">
+		<div data-role="header" data-tap-toggle="false" data-position="fixed" data-theme="a" class="headerSticky">
+			<div>
+				<h1>
+					<center>Animal Helper
+				</h1>
+			</div>
+			<!-- populate the panel menu, also with the id Index in this case -->
+		</div>
+		<!-- /header -->
+
+		<div data-role="content" data-theme="a">
+
+
+			<div id="map_canvas" style="width: 320px; height: 480px;"></div>
+
+				<a data-role="button" href="#showEmailPage">Next</a>
+		</div>
+		<!-- /content -->
+	</div>
+	<!-- /page -->
+
+	<div id="showEmailPage" data-role="page" data-theme="a" style="text-align:center;">
+		<div data-role="header" data-tap-toggle="false" data-position="fixed"
+			data-theme="a" class="headerSticky">
+			<div>
+				<h1>
+					<center>Animal Helper
+				</h1>
+			</div>
+			<!-- populate the panel menu, also with the id Index in this case -->
+		</div>
+		<!-- /header -->
+
+		<div data-role="content" data-theme="a">
+
+			<h4>Send Email</h4>
+			<div data-role="fieldcontain">
+				<label for="textarea">Extra Info:</label>
+				<textarea cols="25" rows="8" name="textarea" id="textarea"
+					data-clear-btn="true">No Extra Information</textarea>
+			</div>
+
+			<button id="SendMail">Send Mail</button>
+			
+				<a data-role="button" href="#fifthPage">Next</a>
+			
+		</div>
+		<!-- /content -->
+	</div>
+	<!-- /page -->
+
+
+
+	<div id="fifthPage" data-role="page" data-theme="a" style="text-align:center;">
+		<div data-role="header" data-tap-toggle="false" data-position="fixed"
+			data-theme="a" class="headerSticky">
+			<div>
+				<h1>
+					<center>Animal Helper
+				</h1>
+			</div>
+			<!-- populate the panel menu, also with the id Index in this case -->
+		</div>
+		<!-- /header -->
+
+		<div data-role="content" data-theme="e">
+			<div id="panel"></div>
+				<a data-role="button" href="#showMapPage">Back</a>
+			
+		</div>
+		<!-- /content -->
+	</div>
+	<!-- /page -->
+
+</body>
+</html>
